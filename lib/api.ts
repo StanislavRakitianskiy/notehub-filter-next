@@ -21,6 +21,20 @@ interface CreateNoteResponse {
   tag: NoteTag;
 }
 
+interface Category {
+  id: string;
+  tag: NoteTag;
+}
+
+export const getCategories = async (): Promise<Category[]> => {
+  const res = await axios.get<Category[]>(baseUrl, {
+    headers: {
+      Authorization: `Bearer ${tmdbToken}`,
+    },
+  });
+  return res.data;
+};
+
 export const fetchNotes = async (
   params: FetchNotesParams,
 ): Promise<FetchNotesResponse> => {
