@@ -9,9 +9,10 @@ import Modal from "@/components/Modal/Modal";
 import { fetchNotes } from "@/lib/api";
 import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
+import {NoteTag} from "@/types/note";
 import css from "./page.module.css";
 
-const NoteClient = () => {
+const NoteClient = ({ category }: { category?: NoteTag }) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
   const [page, setPage] = useState<number>(1);
@@ -21,8 +22,8 @@ const NoteClient = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["article", page, topic],
-    queryFn: () => fetchNotes({ page, perPage: 12, search: topic }),
+    queryKey: ["article", page, topic, category ?? 'all'],
+    queryFn: () => fetchNotes({ page, perPage: 12, search: topic, tag: category }),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });

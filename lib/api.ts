@@ -13,6 +13,7 @@ interface FetchNotesParams {
   page?: number;
   perPage?: number;
   search?: string;
+  tag?: string;
 }
 
 interface CreateNoteResponse {
@@ -22,7 +23,7 @@ interface CreateNoteResponse {
 }
 
 export const fetchNotes = async (
-  params: FetchNotesParams,
+  params?: FetchNotesParams,
 ): Promise<FetchNotesResponse> => {
   const res = await axios.get<FetchNotesResponse>(baseUrl, {
     params,
