@@ -8,7 +8,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-function Modal({ onClose, children }: ModalProps) {
+function Modal({ children, onClose }: ModalProps) {
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();

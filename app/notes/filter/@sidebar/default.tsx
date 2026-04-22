@@ -4,7 +4,7 @@ import { NoteTag } from "@/types/note";
 
 const tags: NoteTag[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
 
-const SidebarNotes = async () => {
+const SidebarNotes = () => {
   return (
     <ul className={css.menuList}>
       <li className={css.menuItem}>
